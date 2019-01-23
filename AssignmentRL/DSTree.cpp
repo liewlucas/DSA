@@ -7,6 +7,3 @@ DSTree::DSTree()
 }
 
 
-DSTree::~DSTree()
-{
-}
