@@ -22,4 +22,6 @@ public:
 	const void searchClosest(DSTree*, const string);
 	// Traverse through tree
 	void traverse(string, DSTree*);
+	
+	bool InsertionError(string);
 };

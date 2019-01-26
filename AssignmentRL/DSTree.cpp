@@ -43,18 +43,50 @@ bool DSTree::search(const string word)
 		// traverse to next node
 		curr = curr->alphabet[word[i]];
 
-		if (curr == nullptr) // If next node is null, meaning word not registered
+		if (curr == nullptr) // If next node is null, meaning word does not exist
 		{
 			return false;
 		}
 	}
-	return curr->isLeaf; // If entire word is found, last letter->isLeaf would return true
+	return curr->isLeaf; // If entire word is found returns true
 }
 
 
 
 
-// Part to edit & Understand
+// Display Certain Letter implementation
+
+bool DSTree::InsertionError(string word) {
+	bool checkdaword = false;
+	DSTree* newNode = this;
+	
+	if (newNode->search(word)) {
+		cout << "Word is already correct\n";
+		return false;
+	}
+
+	else {
+	
+		for (int i = 0; i < word.length(); i++)
+		{
+			string tempWord = word;
+			tempWord.erase(i,1);
+			if (newNode->search(tempWord)) {
+				cout << "Insertion error detected." << endl;	//Loop through  a given word // if in the range of 0-1/1-2 there is an additonla word, insertion error is detected
+				checkdaword = true;
+
+			}
+		}
+
+		if (!checkdaword) {
+			cout << "Word does not exist." << endl;
+			return false;
+		}
+		return true;
+	}
+}
+
+
 
 
 
