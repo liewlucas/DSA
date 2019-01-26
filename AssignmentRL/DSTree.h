@@ -24,4 +24,6 @@ public:
 	void traverse(string, DSTree*);
 	
 	bool InsertionError(string);
+
+	
 };
