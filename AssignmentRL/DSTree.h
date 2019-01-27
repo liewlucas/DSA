@@ -18,11 +18,14 @@ public:
 	void insert(const string);
 	// Search header
 	bool search(const string);
+
 	// Display all words from closest input
 	const void searchClosest(DSTree*, const string);
+
 	// Traverse through tree
 	void traverse(string, DSTree*);
 	
+	//check for insertion error
 	bool InsertionError(string);
 
 	

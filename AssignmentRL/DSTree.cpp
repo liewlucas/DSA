@@ -55,6 +55,80 @@ bool DSTree::search(const string word)
 
 
 // Display Certain Letter implementation
+const void DSTree::searchClosest(DSTree* tree, const string wordentered)
+{
+	//wordentered is user input
+	// tree searches the word and prints it in console, 
+	// this first function is for if user enters exactly the word. 
+	bool check = true;
+	if (tree->search(wordentered))
+	{
+		cout << wordentered << endl; 
+	}
+
+	// if tree is empty 
+	if (this == nullptr)
+	{
+		cout << "There is nothing in the text file." << endl;
+	}
+
+	else
+	{
+		// Create pointer pointing to address of root node (this)
+		DSTree* current = this;
+		for (int i = 0; i < wordentered.length; i++)
+		{
+			// this is to dictate if the specified letter in the tree points to null.
+			// (aka if what the user inputs is not in the dictionary tree)
+			if (current->alphabet[wordentered[i]] == nullptr)
+			{
+				cout << "No such word(s) found, based on your entry. " << endl; // no words exist. 
+				check = false;
+				break;
+			}
+
+
+			else
+			{
+				current = current->alphabet[wordentered[i]];// move the pointer to the latest character
+			}
+		}
+
+		if (check) // if the wordentered check is true , and it exist in dict, 
+		{
+			traverse(wordentered, current);
+		}
+
+	}
+}
+
+
+
+
+//Traverse
+
+void DSTree::traverse(string wordentered, DSTree* tree)
+{
+	for (int i = 0; i < CHAR_SIZE; i++)
+	{
+		if (tree->alphabet[i] != nullptr) // check if array index is null
+		{
+			DSTree*temp = tree->alphabet[i]; // get pointer to check through array
+			char asciiChar = char(i); //Convert int index to ascii character
+			string tempString = wordentered + asciiChar; // join the character to the word entered
+			if (!temp->isLeaf)
+			{
+				traverse(tempString, temp); // if not leaf, call function again for recursion for new wordenterd
+			}
+			else
+			{
+				cout << tempString << endl; // else print out the word
+			}
+		}
+	}
+}
+
+
 
 bool DSTree::InsertionError(string word) {
 	bool checkdaword = false;
@@ -84,6 +158,9 @@ bool DSTree::InsertionError(string word) {
 		}
 		return true;
 	}
+}
+
+
 }
 
 
