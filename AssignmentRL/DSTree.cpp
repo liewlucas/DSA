@@ -161,7 +161,7 @@ bool DSTree::InsertionError(string word) {
 }
 
 
-}
+
 
 
 
